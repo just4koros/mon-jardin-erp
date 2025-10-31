@@ -1,6 +1,7 @@
 // script.js
 
-const BASE_URL = "http://localhost:5000/api";
+// ✅ Use your deployed Render backend
+const BASE_URL = "https://mon-jardin-erp.onrender.com/api";
 
 // Switch sections
 function showSection(id) {
