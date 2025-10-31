@@ -1,0 +1,81 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("farmer") // farmer | buyer | agent | admin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relationships
+  farmers   Farmer[]
+  buyers    Buyer[]
+  agents    Agent[]
+}
+
+model Farmer {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  phone     String?
+  location  String?
+  userId    Int?     // 👈 link to User
+  user      User?    @relation(fields: [userId], references: [id])
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Buyer {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  phone     String?
+  location  String?
+  userId    Int?     // 👈 link to User
+  user      User?    @relation(fields: [userId], references: [id])
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Agent {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  phone     String?
+  region    String?
+  userId    Int?     // 👈 link to User
+  user      User?    @relation(fields: [userId], references: [id])
+  orders    Order[]  @relation("AgentOrders") // 👈 Linked orders
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id               Int      @id @default(autoincrement())
+  farmerId         Int
+  buyerId          Int
+  product          String
+  quantity         Int
+  price            Float
+  deliveryLocation String
+  status           String   @default("Pending")
+  assignedAgentId  Int?
+  farmer           Farmer   @relation(fields: [farmerId], references: [id])
+  buyer            Buyer    @relation(fields: [buyerId], references: [id])
+  assignedAgent    Agent?   @relation("AgentOrders", fields: [assignedAgentId], references: [id])
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
