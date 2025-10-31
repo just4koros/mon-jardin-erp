@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Jardin ERP Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🌿 Mon Jardin ERP Dashboard</h1>
+
+    <nav>
+      <button onclick="showSection('farmers')">Farmers</button>
+      <button onclick="showSection('buyers')">Buyers</button>
+      <button onclick="showSection('agents')">Agents</button>
+      <button onclick="showSection('orders')">Orders</button>
+    </nav>
+
+    <main>
+      <!-- Farmers -->
+      <section id="farmers" class="tab">
+        <h2>Farmers</h2>
+        <form id="farmerForm">
+          <input type="text" id="farmerName" placeholder="Name" required />
+          <input type="email" id="farmerEmail" placeholder="Email" required />
+          <input type="text" id="farmerPhone" placeholder="Phone" />
+          <input type="text" id="farmerLocation" placeholder="Location" />
+          <button type="submit">Add Farmer</button>
+        </form>
+        <ul id="farmersList"></ul>
+      </section>
+
+      <!-- Buyers -->
+      <section id="buyers" class="tab hidden">
+        <h2>Buyers</h2>
+        <form id="buyerForm">
+          <input type="text" id="buyerName" placeholder="Name" required />
+          <input type="email" id="buyerEmail" placeholder="Email" required />
+          <input type="text" id="buyerPhone" placeholder="Phone" />
+          <input type="text" id="buyerLocation" placeholder="Location" />
+          <button type="submit">Add Buyer</button>
+        </form>
+        <ul id="buyersList"></ul>
+      </section>
+
+      <!-- Agents -->
+      <section id="agents" class="tab hidden">
+        <h2>Agents</h2>
+        <form id="agentForm">
+          <input type="text" id="agentName" placeholder="Name" required />
+          <input type="email" id="agentEmail" placeholder="Email" required />
+          <input type="text" id="agentPhone" placeholder="Phone" />
+          <input type="text" id="agentRegion" placeholder="Region" />
+          <button type="submit">Add Agent</button>
+        </form>
+        <ul id="agentsList"></ul>
+      </section>
+
+      <!-- Orders -->
+      <section id="orders" class="tab hidden">
+        <h2>Orders</h2>
+        <form id="orderForm">
+          <input type="number" id="farmerId" placeholder="Farmer ID" required />
+          <input type="number" id="buyerId" placeholder="Buyer ID" required />
+          <input type="text" id="product" placeholder="Product" required />
+          <input type="number" id="quantity" placeholder="Quantity" required />
+          <input type="number" id="price" placeholder="Price" required />
+          <input
+            type="text"
+            id="deliveryLocation"
+            placeholder="Delivery Location"
+            required
+          />
+          <button type="submit">Add Order</button>
+        </form>
+        <ul id="ordersList"></ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

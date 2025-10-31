@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7fff7;
+  color: #222;
+  text-align: center;
+}
+
+nav button {
+  margin: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background: #4caf50;
+  border: none;
+  color: white;
+  border-radius: 6px;
+}
+
+form {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  gap: 8px;
+}
+
+.hidden {
+  display: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
